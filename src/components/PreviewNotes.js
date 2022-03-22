@@ -14,21 +14,21 @@ import { ReactPropTypes } from 'react'
 // `
 let text,id;
   let newObj
-const handleSave =()=>{
+// const handleSave =()=>{
 
   
-  newObj=JSON.parse(localStorage.getItem("notes"))
-  console.log(newObj)
-  newObj.forEach(element => {
-    text=element.text;
-    id=element.id;
-    console.log(id)
-    console.log(text)
-  });
-}
+//   newObj=JSON.parse(localStorage.getItem("notes"))
+//   console.log(newObj)
+//   newObj.forEach(element => {
+//     text=element.text;
+//     id=element.id;
+//     console.log(id)
+//     console.log(text)
+//   });
+// }
     // const [obj, setObj] = useState('')
 
-export default function PreviewNotes() {
+export default function PreviewNotes(Props) {
   const [pNotes,setNotes]=useState('No note entered yet!')
 
   return (
@@ -37,6 +37,7 @@ export default function PreviewNotes() {
       <h2 className='text-center' >Preview Notes</h2>
 
       <div className="container d-flex justify-content-around flex-wrap" id='PreviewNotes'>
+        {Props.notes}
 
       {/* <div className="card mt-4 " id="card" >
         <div className="card-body">

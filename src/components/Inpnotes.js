@@ -3,7 +3,7 @@ import { useState } from 'react'
 let arr=[]
 let id;
 let newArr
-export default function InputNotes() {
+export default function InputNotes(Props) {
     
     const [text, setText] = useState('')
     let obj={
@@ -20,6 +20,7 @@ export default function InputNotes() {
         arr.forEach(element => {
         });
         setText('')
+        console.log(Props.showArray)
 
     }
 
