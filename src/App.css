@@ -43,7 +43,7 @@
 }
 #textPara{
   height: 8rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 #btn{
   

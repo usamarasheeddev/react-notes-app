@@ -7,25 +7,45 @@ import TextArea from './components/TextArea';
 import { nanoid } from 'nanoid'
 import { toBeEnabled } from '@testing-library/jest-dom/dist/matchers';
 
-
 function App() {
-  const [notes, setNotes] = useState([])
+    
+
+  const handleLocalStorage = () => {
+    let notes=JSON.parse(localStorage.getItem("notes"))
+    if (notes) {
+      return JSON.parse(localStorage.getItem("notes"))
+    }
+    else
+      return []
+
+  }
+
+  const [notes, setNotes] = useState(handleLocalStorage)
+
+
+
 
   //ADD A NOTE
   const addNote = (text) => {
+    let newArr = JSON.parse(localStorage.getItem("notes"))
     const newNote = {
       text: text,
       id: nanoid()
 
     }
-    const newArr = [...notes, newNote]
+    newArr = [...notes, newNote]
+    localStorage.setItem('notes', JSON.stringify(newArr))
     setNotes(newArr)
+
 
   }
   //HANDLE NOTE DELETE
   const deleteNote = (id) => {
     const newArr = notes.filter((note) => note.id !== id)
-    setNotes(newArr)
+    // setNotes(newArr)
+    localStorage.setItem('notes', JSON.stringify(newArr))
+    const localValue = JSON.parse(localStorage.getItem('notes'))
+    setNotes(localValue)
   }
 
   //EDIT A NOTE
@@ -37,6 +57,11 @@ function App() {
 
 
   }
+
+
+
+
+
   // const updateNote = (id) => {
   //   const findNote = notes.find((note) => note.id == id)
 
@@ -68,16 +93,3 @@ function App() {
 
 export default App;
 
-
-
-
-
-
-  // const array = JSON.parse(localStorage.getItem("notes"))
-  // const showArray = () => {
-
-  //   array.forEach(element => {
-  //     console.log(element)
-
-  //   });
-  // }
