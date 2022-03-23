@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+#note{
+  width: 20rem;
+  height: 15em;
+  overflow-y:hidden
+}
+#textPara{
+  height: 8rem;
+  overflow-y: scroll;
+}
+#btn{
+  
+}

@@ -5,12 +5,13 @@ import NoteList from './components/NoteList';
 import { useState } from 'react';
 import TextArea from './components/TextArea';
 import { nanoid } from 'nanoid'
+import { toBeEnabled } from '@testing-library/jest-dom/dist/matchers';
 
 
 function App() {
   const [notes, setNotes] = useState([])
 
-//ADD A NOTE
+  //ADD A NOTE
   const addNote = (text) => {
     const newNote = {
       text: text,
@@ -22,24 +23,39 @@ function App() {
 
   }
   //HANDLE NOTE DELETE
-  const deleteNote=(id)=>{
-    const newArr=notes.filter((note)=> note.id!==id)
+  const deleteNote = (id) => {
+    const newArr = notes.filter((note) => note.id !== id)
     setNotes(newArr)
   }
 
   //EDIT A NOTE
-  const editNote=(id)=>{
-    const find=notes.find((note)=>note.id==id)
-    console.log(find)
+  const editNote = (id) => {
+    const find = notes.find((note) => note.id == id)
+    let val = document.getElementById('textArea').value
+    document.getElementById('textArea').value = find.text
+    // const index = notes.findIndex(x => x.id === id);
+
+
   }
+  // const updateNote = (id) => {
+  //   const findNote = notes.find((note) => note.id == id)
+
+  //   let val = document.getElementById('textArea').value
+  //   document.getElementById('textArea').value = findNote.text
+
+  //   const index = notes.findIndex(x => x.id === id);
+
+  //   const newArr = [...notes, notes[index] = { text: val, id: id }]
+  //   setNotes(newArr)
+  // }
 
   return (
     <>
 
 
-      <Navbar title="Magic Notes" />
+      <Navbar title="React Note App" />
       <div className="container">
-        <TextArea handleNoteSave={addNote} />
+        <TextArea handleNoteSave={addNote} findText={editNote} /*updateNote={updateNote}*/ />
       </div>
       <div className="container">
 
