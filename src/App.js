@@ -8,10 +8,10 @@ import { nanoid } from 'nanoid'
 import { toBeEnabled } from '@testing-library/jest-dom/dist/matchers';
 
 function App() {
-    
+
 
   const handleLocalStorage = () => {
-    let notes=JSON.parse(localStorage.getItem("notes"))
+    let notes = JSON.parse(localStorage.getItem("notes"))
     if (notes) {
       return JSON.parse(localStorage.getItem("notes"))
     }
@@ -74,6 +74,14 @@ function App() {
   //   setNotes(newArr)
   // }
 
+  //SETTING NOTE COLOR
+  const setNoteBg = () => {
+    const colors = ["rgb(197, 243, 255)", "rgb(141, 228, 231)", "rgb(255, 237, 197)", "rgb(229, 197, 255)"];
+
+    const random = Math.floor(Math.random() * colors.length);
+    return random, colors[random]
+  }
+
   return (
     <>
 
@@ -84,7 +92,7 @@ function App() {
       </div>
       <div className="container">
 
-        <NoteList notes={notes} handleDeleteNote={deleteNote} editNote={editNote} />
+        <NoteList notes={notes} handleDeleteNote={deleteNote} editNote={editNote} noteBg={setNoteBg} />
       </div>
 
     </>

@@ -34,7 +34,7 @@ export default function TextArea({ handleNoteSave, findText, updateNote }) {
                 </div>
                 <div className="container d-flex justify-content-end">
                     {/* <button type="button" onClick={handleUpdate} className="btn btn-outline-info me-5" id='updateBtn' >Update</button> */}
-                    <button type="button" onClick={handleSave} className="btn btn-outline-info">Add Note</button>
+                    <button type="button" onClick={handleSave} className="btn btn-outline-info">Add Note  <i className="fa-solid fa-plus"></i></button>
 
                 </div>
             </form>
