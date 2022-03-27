@@ -30,8 +30,8 @@ function App() {
     let newArr = JSON.parse(localStorage.getItem("notes"))
     const newNote = {
       text: text,
-      id: nanoid()
-
+      id: nanoid(),
+      color: setNoteBg()
     }
     newArr = [...notes, newNote]
     localStorage.setItem('notes', JSON.stringify(newArr))
@@ -48,6 +48,8 @@ function App() {
     setNotes(localValue)
   }
 
+
+  
   //EDIT A NOTE
   const editNote = (id) => {
     const find = notes.find((note) => note.id == id)
@@ -76,7 +78,7 @@ function App() {
 
   //SETTING NOTE COLOR
   const setNoteBg = () => {
-    const colors = ["rgb(197, 243, 255)", "rgb(141, 228, 231)", "rgb(255, 237, 197)", "rgb(229, 197, 255)"];
+    const colors = ["rgb(197, 243, 255)", "rgb(141, 228, 231)", "rgb(255, 237, 197)", "rgb(229, 197, 255)", "rgb(255, 169, 255)", "rgb(255, 221, 146)", "rgb(141, 228, 231)"];
 
     const random = Math.floor(Math.random() * colors.length);
     return random, colors[random]
@@ -92,7 +94,7 @@ function App() {
       </div>
       <div className="container">
 
-        <NoteList notes={notes} handleDeleteNote={deleteNote} editNote={editNote} noteBg={setNoteBg} />
+        <NoteList notes={notes} handleDeleteNote={deleteNote} editNote={editNote} />
       </div>
 
     </>

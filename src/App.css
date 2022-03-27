@@ -40,11 +40,14 @@
   width: 20rem;
   height: 15em;
   overflow-y:hidden;
-  background-color: rgb(141, 228, 231);
+  /* background-color: rgb(255, 169, 255); */
+  /* background-color: rgb(255, 221, 146);
+  background-color: rgb(137, 252, 214);
+   background-color: rgb(141, 228, 231);
   background-color: rgb(255, 237, 197);
   background-color: rgb(197, 243, 255);
-  background-color: rgb(219, 187, 98);
-}
+  background-color: rgb(219, 187, 98); */
+} 
 #textPara{
   height: 8rem;
   overflow-y: auto;

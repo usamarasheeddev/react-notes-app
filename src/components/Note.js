@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Note({ text, id, handleOnDelete, editNote ,setNoteBg}) {
+export default function Note({ text, id, noteBg, handleOnDelete, editNote }) {
   const handleDelete = () => {
     handleOnDelete(id)
   }
@@ -14,7 +14,7 @@ export default function Note({ text, id, handleOnDelete, editNote ,setNoteBg}) {
     //     this is a note1
 
     // </div>
-  <div className="card mt-4 " id='note' style={{backgroundColor:setNoteBg()}}>
+  <div className="card mt-4 " id='note' style={{backgroundColor:noteBg}}>
       <div className="card-body">
         <h5 className="card-title">Note</h5>
         <p id='textPara' className="card-text">{text}</p>
