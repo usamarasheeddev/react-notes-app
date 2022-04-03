@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 
 
-export default function TextArea({ handleNoteSave, findText, updateNote }) {
-    const [noteText, setnoteText] = useState('')
+export default function TextArea({ noteText, setnoteText, handleNoteSave, edit, setEdit, updateNote }) {
+    const remainingCh = 200
 
     const handleOnChange = (event) => {
-        setnoteText(event.target.value)
-
-
+        if (remainingCh - event.target.value.length >= 0) {
+            setnoteText(event.target.value)
+        }
     }
+
+
     //HANDLE SAVE 
     const handleSave = () => {
         if (noteText.trim().length > 0) {
@@ -20,21 +22,29 @@ export default function TextArea({ handleNoteSave, findText, updateNote }) {
 
     }
 
-    //HNADLE UPDATE
-    // const handleUpdate = () => {
-    //     updateNote(noteText)
-    //     console.log(noteText)
-    // }
+    // HNADLE UPDATE
+    const cancelEdit = () => {
+        setnoteText('')
+        document.getElementById('textArea').value = ''
+        setEdit(false)
+
+
+    }
     return (
         <>
-            <form >
+            <form onSubmit={edit ? updateNote && cancelEdit: handleSave  }>
                 <div className="mb-3">
-                    {/* <label htmlFor="exampleFormControlTextarea1" className="form-label">Add Note Here</label> */}
+               
                     <textarea className="form-control mt-5" placeholder='Type here....' id="textArea" onChange={handleOnChange} rows="5"></textarea>
                 </div>
-                <div className="container d-flex justify-content-end">
-                    {/* <button type="button" onClick={handleUpdate} className="btn btn-outline-info me-5" id='updateBtn' >Update</button> */}
-                    <button type="button" onClick={handleSave} className="btn btn-outline-info">Add Note  <i className="fa-solid fa-plus"></i></button>
+                <div className="container d-flex justify-content-between flex-xsm-wrap">
+                    
+                    <small id='remaining'><h6>{remainingCh-noteText.length} Remaining</h6></small>
+
+                    <div className="container d-flex justify-content-end">
+                        <button type="submit" className="btn btn-outline-info me-3">{edit ? "Update Note" : "Add Note" }</button>
+                        <button type="submit" className="btn btn-outline-info me-3">{edit && "Cancel"  }</button>
+                    </div>
 
                 </div>
             </form>

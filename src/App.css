@@ -37,9 +37,10 @@
   }
 }
 #note{
-  width: 20rem;
+  width: 22rem;
   height: 15em;
   overflow-y:hidden;
+  white-space: pre-wrap;
   /* background-color: rgb(255, 169, 255); */
   /* background-color: rgb(255, 221, 146);
   background-color: rgb(137, 252, 214);
@@ -52,6 +53,14 @@
   height: 8rem;
   overflow-y: auto;
 }
-#btn{
-  
+#textArea:focus{
+  outline: none;
+  /* border: none; */
+  box-shadow: none;
+}
+#remaining{
+  /* margin-right:6em; */
+  font-weight: 600;
+  width: 8rem;
+
 }

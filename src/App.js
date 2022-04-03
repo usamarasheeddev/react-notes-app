@@ -9,7 +9,7 @@ import { toBeEnabled } from '@testing-library/jest-dom/dist/matchers';
 
 function App() {
 
-
+  //HANDLE LOCAL STORAGE
   const handleLocalStorage = () => {
     let notes = JSON.parse(localStorage.getItem("notes"))
     if (notes) {
@@ -20,11 +20,9 @@ function App() {
 
   }
 
+  
+
   const [notes, setNotes] = useState(handleLocalStorage)
-
-
-
-
   //ADD A NOTE
   const addNote = (text) => {
     let newArr = JSON.parse(localStorage.getItem("notes"))
@@ -49,32 +47,39 @@ function App() {
   }
 
 
-  
+  //SET EDIT STATE
+  const [edit, setEdit] = useState(false)
+
   //EDIT A NOTE
   const editNote = (id) => {
+    // console.log(id)
     const find = notes.find((note) => note.id == id)
     let val = document.getElementById('textArea').value
     document.getElementById('textArea').value = find.text
     // const index = notes.findIndex(x => x.id === id);
 
-
   }
 
 
+  const [noteText, setnoteText] = useState('')
 
-
-
-  // const updateNote = (id) => {
-  //   const findNote = notes.find((note) => note.id == id)
-
-  //   let val = document.getElementById('textArea').value
-  //   document.getElementById('textArea').value = findNote.text
-
-  //   const index = notes.findIndex(x => x.id === id);
-
-  //   const newArr = [...notes, notes[index] = { text: val, id: id }]
-  //   setNotes(newArr)
-  // }
+  const [noteId, setNoteId] = useState('')
+  
+  const updateNote = () => {
+    let val = document.getElementById('textArea').value
+    const updatedArr = notes.map((note) => {
+      if (note.id === noteId) {
+        note.text = val;
+      }
+      return note;
+    });
+    setNotes(updatedArr);
+    localStorage.setItem('notes',JSON.stringify(updatedArr))
+    setnoteText("");
+    setEdit(false);
+    document.getElementById('textArea').value=''
+    
+  }
 
   //SETTING NOTE COLOR
   const setNoteBg = () => {
@@ -89,12 +94,27 @@ function App() {
 
 
       <Navbar title="React Note App" />
+
+
       <div className="container">
-        <TextArea handleNoteSave={addNote} findText={editNote} /*updateNote={updateNote}*/ />
+        <TextArea handleNoteSave={addNote}
+          setEdit={setEdit}
+          edit={edit}
+          updateNote={updateNote} 
+          noteText={noteText}
+          setnoteText={setnoteText}
+          />
       </div>
+
       <div className="container">
 
-        <NoteList notes={notes} handleDeleteNote={deleteNote} editNote={editNote} />
+        <NoteList notes={notes}
+          handleDeleteNote={deleteNote}
+          editNote={editNote}
+          setEdit={setEdit}
+          setNoteId={setNoteId}
+
+        />
       </div>
 
     </>
