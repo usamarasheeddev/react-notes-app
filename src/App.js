@@ -6,6 +6,7 @@ import { useState } from 'react';
 import TextArea from './components/TextArea';
 import { nanoid } from 'nanoid'
 import { toBeEnabled } from '@testing-library/jest-dom/dist/matchers';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -20,7 +21,7 @@ function App() {
 
   }
 
-  
+
 
   const [notes, setNotes] = useState(handleLocalStorage)
   //ADD A NOTE
@@ -64,7 +65,7 @@ function App() {
   const [noteText, setnoteText] = useState('')
 
   const [noteId, setNoteId] = useState('')
-  
+
   const updateNote = () => {
     let val = document.getElementById('textArea').value
     const updatedArr = notes.map((note) => {
@@ -74,11 +75,11 @@ function App() {
       return note;
     });
     setNotes(updatedArr);
-    localStorage.setItem('notes',JSON.stringify(updatedArr))
+    localStorage.setItem('notes', JSON.stringify(updatedArr))
     setnoteText("");
     setEdit(false);
-    document.getElementById('textArea').value=''
-    
+    document.getElementById('textArea').value = ''
+
   }
 
   //SETTING NOTE COLOR
@@ -100,10 +101,10 @@ function App() {
         <TextArea handleNoteSave={addNote}
           setEdit={setEdit}
           edit={edit}
-          updateNote={updateNote} 
+          updateNote={updateNote}
           noteText={noteText}
           setnoteText={setnoteText}
-          />
+        />
       </div>
 
       <div className="container">
@@ -116,6 +117,7 @@ function App() {
 
         />
       </div>
+      <Footer/>
 
     </>
   );
